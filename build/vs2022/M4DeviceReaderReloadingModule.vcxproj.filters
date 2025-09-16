@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources">
+      <UniqueIdentifier>{3394DBFB-9FAA-D991-E821-65B35477AA19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\M4DeviceReaderReloadingModule">
+      <UniqueIdentifier>{97B34035-0378-3F25-CCDD-6FEF3861DB5A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\M4DeviceReaderReloadingModule">
+      <UniqueIdentifier>{3B061944-A774-6EC3-F05D-29C35C0B645F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\M4DeviceReaderReloadingModule\M4DeviceReaderReloadingModule.h">
+      <Filter>include\M4DeviceReaderReloadingModule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReaderReloadingModule\M4DeviceReaderUnloadedPlaceholders.h">
+      <Filter>include\M4DeviceReaderReloadingModule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\Version.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\resource.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\M4DeviceReaderReloadingModule\M4DeviceReaderReloadingModule.cpp">
+      <Filter>src\M4DeviceReaderReloadingModule</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\M4DeviceReaderReloadingModule\M4DeviceReaderUnloadedPlaceholders.cpp">
+      <Filter>src\M4DeviceReaderReloadingModule</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\include\Resources\Resources.rc">
+      <Filter>include\Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

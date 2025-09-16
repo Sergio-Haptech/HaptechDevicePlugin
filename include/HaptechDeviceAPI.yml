@@ -1,0 +1,93 @@
+WorkInProgress:
+- '"This API Config has been saved as a work in progress and should not be merged into master in its current state."'
+- '"Run Generate to clear this message and produce the final output files."'
+APIConfig:
+  Alias: HaptechDeviceAPI
+  Version:
+  - 1
+  - 2
+  Includes:
+  - Version: 1
+    Items:
+    - Name: CoreAPI
+      Version: 8
+  - Version: 2
+    Items:
+    - Name: CoreAPI
+      Version: 8
+  ItemOrdering:
+  - Version: 1
+    Functions:
+    - GetM4DeviceUsingStringAddress
+  - Version: 2
+    Functions:
+    - GetM4DeviceUsingStringAddress
+  Functions:
+  - Name: "GetM4DeviceUsingStringAddress"
+    Version: "1"
+    Return:
+      Type: "APIResult"
+      Description:
+      - return description
+      Literal: "APIResult"
+    Parameters:
+    - Name: "device"
+      Type: "void"
+      Pointer: true
+      Description:
+      - parameter description
+      Literal: "_Out_ void* device"
+      Annotation: "_Out_"
+  - Name: "GetM4DeviceUsingStringAddress"
+    Version: "2"
+    Return:
+      Type: "APIResult"
+      Description:
+      - return description
+      Literal: "APIResult"
+    Parameters:
+    - Name: "device"
+      Type: "void"
+      Pointer: true
+      Description:
+      - parameter description
+      Literal: "_Out_ void* device"
+      Annotation: "_Out_"
+    IsCopy: true
+    CopiedVersion: 1
+    WasCopy: true
+  ConvertedStructUnderscores: true
+  ConvertedRequiredVersions: true
+  GeneratingSHA: true
+  SHAExcludesComments: true
+OriginalAPIConfig:
+  Alias: HaptechDeviceAPI
+  Version:
+  - 1
+  Includes:
+  - Version: 1
+    Items:
+    - Name: CoreAPI
+      Version: 8
+  ItemOrdering:
+  - Version: 1
+    Functions:
+    - GetM4DeviceUsingStringAddress
+  Functions:
+  - Name: "GetM4DeviceUsingStringAddress"
+    Version: "1"
+    Return:
+      Type: "APIResult"
+      Description:
+      - return description
+    Parameters:
+    - Name: "device"
+      Type: "void"
+      Pointer: true
+      Description:
+      - parameter description
+      Annotation: "_Out_"
+  ConvertedStructUnderscores: true
+  ConvertedRequiredVersions: true
+  GeneratingSHA: true
+  SHAExcludesComments: true

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources">
+      <UniqueIdentifier>{3394DBFB-9FAA-D991-E821-65B35477AA19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\M4DeviceReader">
+      <UniqueIdentifier>{BCEE7A69-A8E8-A3BB-9155-3ACC7DEE0928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\M4DeviceReader">
+      <UniqueIdentifier>{E0CDDB20-CCB1-9C76-3512-97C9211587F8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\M4DeviceReader\Gears.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\Version.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\BaseDevice.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\DeviceIdentifier.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\ListOfDevices.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\M4Device.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\M4DeviceReader.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\PacketListener.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\PacketReader.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\SocketSetupHelper.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\MakeSocketSetupItem.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\M4DeviceReader\M4DeviceReader.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseDevice.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketSetupHelper.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="M4Device.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceIdentifier.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketListener.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketReader.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="ListOfDevices.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeSocketSetupItem.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\HaptechDeviceAPI.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

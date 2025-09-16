@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources">
+      <UniqueIdentifier>{3394DBFB-9FAA-D991-E821-65B35477AA19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\M4DeviceReaderUnitTest">
+      <UniqueIdentifier>{9C459E02-886B-6869-71B1-ED345D768D35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\M4DeviceReaderUnitTest">
+      <UniqueIdentifier>{C008EEE1-AC18-9AB2-15D2-FED00101894B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\M4DeviceReaderUnitTest\M4DeviceReaderUnitTest.h">
+      <Filter>include\M4DeviceReaderUnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\Version.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\resource.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\M4DeviceReaderUnitTest\GTest.cpp">
+      <Filter>src\M4DeviceReaderUnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\M4DeviceReaderUnitTest\M4DeviceReaderUnitTest.cpp">
+      <Filter>src\M4DeviceReaderUnitTest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\include\Resources\Resources.rc">
+      <Filter>include\Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Resources">
+      <UniqueIdentifier>{3394DBFB-9FAA-D991-E821-65B35477AA19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\M4DeviceReader">
+      <UniqueIdentifier>{BCEE7A69-A8E8-A3BB-9155-3ACC7DEE0928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\M4DeviceReader">
+      <UniqueIdentifier>{E0CDDB20-CCB1-9C76-3512-97C9211587F8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\M4DeviceReader\M4DeviceReaderMock.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\M4DeviceReader\M4DeviceReaderProxy.h">
+      <Filter>include\M4DeviceReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\Version.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Resources\resource.h">
+      <Filter>include\Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\M4DeviceReader\M4DeviceReaderComponent.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\M4DeviceReader\M4DeviceReaderMock.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\M4DeviceReader\M4DeviceReaderProxy.cpp">
+      <Filter>src\M4DeviceReader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\include\Resources\Resources.rc">
+      <Filter>include\Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

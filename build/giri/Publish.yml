@@ -1,0 +1,11 @@
+Artifactory: http://192.168.10.233:8081/artifactory
+BinaryRepo: Gears
+Repo: Gears
+Dependencies:
+- Group: Dependencies
+  Name: HaptechDeviceAPI
+  Version: 1
+  SubDependencies:
+  - Group: Dependencies
+    Name: CoreAPI
+    Version: 8

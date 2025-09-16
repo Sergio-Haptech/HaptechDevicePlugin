@@ -1,0 +1,6 @@
+#ifndef M4DEVICEREADER_UNITTEST_H
+#define M4DEVICEREADER_UNITTEST_H
+
+#include <CoreAPI.h>
+
+#endif

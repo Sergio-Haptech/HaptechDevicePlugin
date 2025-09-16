@@ -1,0 +1,37 @@
+# Auto detect text files and perform LF normalization
+*              text=auto
+
+# Common files
+*.md           text diff=markdown
+*.ini          text eol=crlf
+
+# Windows scripts
+*.bat          text eol=crlf
+*.cmd          text eol=crlf
+*.ps1          text eol=crlf
+
+# Visual Studio
+*.sln          text eol=crlf
+*.csproj       text eol=crlf
+*.vcxproj      text eol=crlf
+*.props        text eol=crlf
+*.filters      text eol=crlf
+
+# C++
+*.cpp          text diff=cpp
+*.hpp          text diff=cpp
+*.h            text diff=cpp
+*.rc           text eol=crlf
+
+# C#
+*.cs           text diff=csharp
+*.csx          text diff=csharp
+
+# Binaries
+*.exe          binary
+*.dll          binary
+
+# Exclude files from exporting
+.gitattributes export-ignore
+.gitignore     export-ignore
+.gitkeep       export-ignore
