@@ -15,8 +15,6 @@
 #include <ApplicationListenerAPI.h>
 #include <ComponentReloadingListenerAPI.h>
 #include <HaptechDeviceAPI.h>
-#include <MissionListenerAPI.h>
-#include <WeaponSystemAspectListenerAPI.h>
 
 
 #endif

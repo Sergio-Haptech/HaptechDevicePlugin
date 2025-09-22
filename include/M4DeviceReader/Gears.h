@@ -118,21 +118,23 @@
 #include <string>
 
 #include <ComponentAPI.h>
-#include <WeaponSystemAspectAPI.h>
-#include <GUIAPI.h>
+//#include <WeaponSystemAspectAPI.h>
+//#include <GUIAPI.h>
 //#include <MissionAPI.h>
-#include <ApplicationListenerAPI.h>
-#include <MissionAPI.h>
-#include <MissionListenerAPI.h>
-#include <LogAPI.h>
-#include <WeaponSystemAspectListenerAPI.h>
+//#include <ApplicationListenerAPI.h>
+//#include <MissionAPI.h>
+//#include <MissionListenerAPI.h>
+//#include <LogAPI.h>
+//#include <WeaponSystemAspectListenerAPI.h>
 #include <ComponentReloadingListenerAPI.h>
-#include <WorldDrawAPI.h>
-#include <ObjectListenerAPI.h>
-#include <EnvironmentAPI.h>
-#include <WorldAPI.h>
-#include <SoundAspectAPI.h>
+//#include <WorldDrawAPI.h>
+//#include <ObjectListenerAPI.h>
+//#include <EnvironmentAPI.h>
+//#include <WorldAPI.h>
+//#include <SoundAspectAPI.h>
 #include <HaptechDeviceAPI.h>
+#include <GUIAPI.h>
+#include <ApplicationListenerAPI.h>
 //#include <MissionListenerAPI.h>
 //#include <MissionAPI.h>
 //#include <WaypointAspectListenerAPI.h>
@@ -143,27 +145,30 @@ class Gears : public APIHelper<Gears, APIManager_v6>
 
 public:
   START_APIS(Gears)
-  REGISTER_API(GUIAPI, 3, Single)
+//  REGISTER_API(GUIAPI, 3, Single)
 //  REGISTER_API(MissionListenerAPI, 4, Single)
 //  REGISTER_API(MissionAPI, 8, Single)
-  REGISTER_API(MissionAPI, 8, Single)
+//  REGISTER_API(MissionAPI, 8, Single)
 //  REGISTER_API(MissionListenerAPI, 4, Single)
-  REGISTER_API(WeaponSystemAspectAPI, 11, Single)
-  REGISTER_API(LogAPI, 1, Instance)
-  REGISTER_API(WorldDrawAPI, 6, Single)
-  REGISTER_API(ObjectListenerAPI, 1, Single)
-  REGISTER_API(EnvironmentAPI, 9, Single)
-  REGISTER_API(WorldAPI, 9, Single)
-  REGISTER_API(SoundAspectAPI, 2, Single)
+//  REGISTER_API(WeaponSystemAspectAPI, 11, Single)
+//  REGISTER_API(LogAPI, 1, Instance)
+//  REGISTER_API(WorldDrawAPI, 6, Single)
+//  REGISTER_API(ObjectListenerAPI, 1, Single)
+//  REGISTER_API(EnvironmentAPI, 9, Single)
+//  REGISTER_API(WorldAPI, 9, Single)
+//  REGISTER_API(SoundAspectAPI, 2, Single)
+  REGISTER_API(GUIAPI, 3, Single)
   END_APIS()
 
   START_MY_APIS(Gears)
   REGISTER_MY_API(ComponentAPI, 6)
-  REGISTER_MY_API(ApplicationListenerAPI, 2)
-  REGISTER_MY_API(MissionListenerAPI, 4)
-  REGISTER_MY_API(WeaponSystemAspectListenerAPI, 5)
+//  REGISTER_MY_API(ApplicationListenerAPI, 2)
+//  REGISTER_MY_API(MissionListenerAPI, 4)
+//  REGISTER_MY_API(WeaponSystemAspectListenerAPI, 5)
   REGISTER_MY_API(ComponentReloadingListenerAPI, 1)
-  REGISTER_MY_API(HaptechDeviceAPI, 1)
+  REGISTER_MY_API(HaptechDeviceAPI, 2)
+//  REGISTER_MY_API(HaptechDeviceAPI, 2)
+  REGISTER_MY_API(ApplicationListenerAPI, 2)
   END_MY_APIS()
 
 private:

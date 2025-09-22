@@ -11,15 +11,6 @@
 #include "M4DeviceReaderProxy.h"
 #include "M4DeviceReader.h"
 #include <GUIAPI.h>
-#include <MissionAPI.h>
-#include <WeaponSystemAspectAPI.h>
-#include <LogAPI.h>
-#include <EnvironmentAPI.h>
-#include <ObjectListenerAPI.h>
-#include <WorldDrawAPI.h>
-#include <WorldAPI.h>
-#include <SoundAspectAPI.h>
-#include <CommonTypesAPI.h>
 
 GEARS_EXPORT void GEARS_API RegisterAPI_v6(APIManager_RegisterAPI_Func_v6 register_api)
 {
@@ -76,59 +67,19 @@ GEARS_EXPORT void GEARS_API RegisterAPI_v6(APIManager_RegisterAPI_Func_v6 regist
   }
 #endif
 
-  // Register HaptechDeviceAPI_v1
+  // Register HaptechDeviceAPI_v2
   {
-    static HaptechDeviceAPI_v1 api;
+    static HaptechDeviceAPI_v2 api;
     APIInfo_v6 api_info;
 
-    api.GetM4DeviceUsingStringAddress = HaptechDevice_GetM4DeviceUsingStringAddress;
+    api.GetDeviceState = HaptechDevice_GetDeviceState;
+    api.test = HaptechDevice_test;
+    api.ParseDeviceUpdates = HaptechDevice_ParseDeviceUpdates;
 
     api_info._api = &api;
-    api_info._version = 1;
+    api_info._version = 2;
     api_info._privilege = 0;
 
     register_api(HaptechDeviceAPI_Handle, &api_info);
-  }
-
-  // Register MissionListenerAPI_v4
-  {
-    static MissionListenerAPI_v4 api;
-    APIInfo_v6 api_info;
-
-    api.OnMissionStart = MissionListener_OnMissionStart;
-    api.OnMissionEnd = MissionListener_OnMissionEnd;
-    api.OnMissionLoad = MissionListener_OnMissionLoad;
-    api.OnMissionUnload = MissionListener_OnMissionUnload;
-    api.OnPlayerSwitchedUnits = MissionListener_OnPlayerSwitchedUnits;
-    api.OnBriefingShowRequest = MissionListener_OnBriefingShowRequest;
-    api.OnBriefingHideRequest = MissionListener_OnBriefingHideRequest;
-
-    api_info._api = &api;
-    api_info._version = 4;
-    api_info._privilege = 0;
-
-    register_api(MissionListenerAPI_Handle, &api_info);
-  }
-
-  // Register WeaponSystemAspectListenerAPI_v5
-  {
-    static WeaponSystemAspectListenerAPI_v5 api;
-    APIInfo_v6 api_info;
-
-    api.OnFire = WeaponSystemAspectListener_OnFire;
-    api.OnAmmoHit = WeaponSystemAspectListener_OnAmmoHit;
-    api.OnWeaponChanged = WeaponSystemAspectListener_OnWeaponChanged;
-    api.OnMuzzleChanged = WeaponSystemAspectListener_OnMuzzleChanged;
-    api.OnMagazineChanged = WeaponSystemAspectListener_OnMagazineChanged;
-    api.OnWeaponAddedOrRemoved = WeaponSystemAspectListener_OnWeaponAddedOrRemoved;
-    api.OnMagazineAddedOrRemoved = WeaponSystemAspectListener_OnMagazineAddedOrRemoved;
-    api.OnIncomingLaser = WeaponSystemAspectListener_OnIncomingLaser;
-    api.OnIncomingProjectile = WeaponSystemAspectListener_OnIncomingProjectile;
-
-    api_info._api = &api;
-    api_info._version = 5;
-    api_info._privilege = 0;
-
-    register_api(WeaponSystemAspectListenerAPI_Handle, &api_info);
   }
 }

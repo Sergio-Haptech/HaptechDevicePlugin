@@ -15,8 +15,6 @@
 #include <ApplicationListenerAPI.h>
 #include <ComponentReloadingListenerAPI.h>
 #include <HaptechDeviceAPI.h>
-#include <MissionListenerAPI.h>
-#include <WeaponSystemAspectListenerAPI.h>
 
 GEARS_EXPORT void GEARS_API RegisterAPI_v6(APIManager_RegisterAPI_Func_v6 register_api);
 

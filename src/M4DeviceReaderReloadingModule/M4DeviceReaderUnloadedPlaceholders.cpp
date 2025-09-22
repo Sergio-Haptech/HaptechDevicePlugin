@@ -70,17 +70,17 @@ APIResult GEARS_API Unloaded_Component_GetVersion(_Inout_ int32_t* version_lengt
   return kAPIResult_GeneralSuccess;
 }
 
-void GEARS_API Unloaded_ApplicationListener_OnApplicationReady()
-{
-}
+//void GEARS_API Unloaded_ApplicationListener_OnApplicationReady()
+//{
+//}
 
-void GEARS_API Unloaded_ApplicationListener_OnBeforeUpdate(_In_ float32_t application_delta_time, _In_ float32_t simulation_delta_time)
-{
-}
+//void GEARS_API Unloaded_ApplicationListener_OnBeforeUpdate(_In_ float32_t application_delta_time, _In_ float32_t simulation_delta_time)
+//{
+//}
 
-void GEARS_API Unloaded_ApplicationListener_OnAfterUpdate(_In_ float32_t application_delta_time, _In_ float32_t simulation_delta_time)
-{
-}
+//void GEARS_API Unloaded_ApplicationListener_OnAfterUpdate(_In_ float32_t application_delta_time, _In_ float32_t simulation_delta_time)
+//{
+//}
 
 APIResult GEARS_API Unloaded_ComponentReloadingListener_BeforeUnload()
 {
@@ -92,74 +92,126 @@ APIResult GEARS_API Unloaded_ComponentReloadingListener_AfterReload(_In_ const c
   return kAPIResult_GeneralSuccess;
 }
 
-void GEARS_API Unloaded_MissionListener_OnMissionStart(_In_ bool32_t restart)
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnMissionStart(_In_ bool32_t restart)
+//{
+//}
 
-void GEARS_API Unloaded_MissionListener_OnMissionEnd(_In_ bool32_t restart)
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnMissionEnd(_In_ bool32_t restart)
+//{
+//}
 
-void GEARS_API Unloaded_MissionListener_OnMissionLoad(_In_ const char* mission_name)
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnMissionLoad(_In_ const char* mission_name)
+//{
+//}
 
-void GEARS_API Unloaded_MissionListener_OnMissionUnload(_In_ const char* mission_name)
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnMissionUnload(_In_ const char* mission_name)
+//{
+//}
 
-void GEARS_API Unloaded_MissionListener_OnPlayerSwitchedUnits(_In_ ObjectHandle_v3 old_entity, _In_ ObjectHandle_v3 new_entity)
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnPlayerSwitchedUnits(_In_ ObjectHandle_v3 old_entity, _In_ ObjectHandle_v3 new_entity)
+//{
+//}
 
-void GEARS_API Unloaded_MissionListener_OnBriefingShowRequest()
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnBriefingShowRequest()
+//{
+//}
 
-void GEARS_API Unloaded_MissionListener_OnBriefingHideRequest()
-{
-}
+//void GEARS_API Unloaded_MissionListener_OnBriefingHideRequest()
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnFire(_In_ ObjectHandle_v3 shooter_lifeform, _In_ ObjectHandle_v3 shooter_platform, _In_ ObjectHandle_v3 shooter_turret, _In_ ObjectHandle_v3 shot)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnFire(_In_ ObjectHandle_v3 shooter_lifeform, _In_ ObjectHandle_v3 shooter_platform, _In_ ObjectHandle_v3 shooter_turret, _In_ ObjectHandle_v3 shot)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnAmmoHit(_In_ const HitEvent_v3* hit_info)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnAmmoHit(_In_ const HitEvent_v3* hit_info)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnWeaponChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t previous_weapon_index, _In_ int32_t new_weapon_index)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnWeaponChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t previous_weapon_index, _In_ int32_t new_weapon_index)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnMuzzleChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t weapon_index, _In_ int32_t previous_muzzle_index, _In_ int32_t new_muzzle_index)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnMuzzleChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t weapon_index, _In_ int32_t previous_muzzle_index, _In_ int32_t new_muzzle_index)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnMagazineChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t weapon_index, _In_ int32_t previous_magazine_index, _In_ int32_t new_magazine_index)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnMagazineChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t weapon_index, _In_ int32_t previous_magazine_index, _In_ int32_t new_magazine_index)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnWeaponAddedOrRemoved(_In_ ObjectHandle_v3 weapon_system_owner, _In_ const char* weapon_name, _In_ int32_t count)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnWeaponAddedOrRemoved(_In_ ObjectHandle_v3 weapon_system_owner, _In_ const char* weapon_name, _In_ int32_t count)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnMagazineAddedOrRemoved(_In_ ObjectHandle_v3 weapon_system_owner, _In_ const char* magazine_name, _In_ int32_t count)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnMagazineAddedOrRemoved(_In_ ObjectHandle_v3 weapon_system_owner, _In_ const char* magazine_name, _In_ int32_t count)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnIncomingLaser(_In_ ObjectHandle_v3 lased_object, _In_ ObjectHandle_v3 laser_source, _In_ LaserType_v5 laser_type, _In_ int64_t lase_event_id, _In_ bool32_t end_of_lase_event, _In_ RotationalAngles_v3 laser_direction, _In_ GeoPosition_v5 laser_position, _In_ float32_t laser_cone_angle)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnIncomingLaser(_In_ ObjectHandle_v3 lased_object, _In_ ObjectHandle_v3 laser_source, _In_ LaserType_v5 laser_type, _In_ int64_t lase_event_id, _In_ bool32_t end_of_lase_event, _In_ RotationalAngles_v3 laser_direction, _In_ GeoPosition_v5 laser_position, _In_ float32_t laser_cone_angle)
+//{
+//}
 
-void GEARS_API Unloaded_WeaponSystemAspectListener_OnIncomingProjectile(_In_ ObjectHandle_v3 object, _In_ ObjectHandle_v3 projectile, _In_ float32_t distance, _In_ GeoPosition_v5 projectile_position, _In_ Vector3f32_v3 projectile_velocity, _In_ ObjectHandle_v3 shooter, _In_ bool32_t can_damage, _In_ GeoPosition_v5 projectile_origin_position)
-{
-}
+//void GEARS_API Unloaded_WeaponSystemAspectListener_OnIncomingProjectile(_In_ ObjectHandle_v3 object, _In_ ObjectHandle_v3 projectile, _In_ float32_t distance, _In_ GeoPosition_v5 projectile_position, _In_ Vector3f32_v3 projectile_velocity, _In_ ObjectHandle_v3 shooter, _In_ bool32_t can_damage, _In_ GeoPosition_v5 projectile_origin_position)
+//{
+//}
 
-APIResult GEARS_API Unloaded_HaptechDevice_GetM4DeviceUsingStringAddress(_Out_ void* device)
+//APIResult GEARS_API Unloaded_HaptechDevice_GetM4DeviceUsingStringAddress(_In_ const char* device_address, _Out_ void* device)
+//{
+//  return kAPIResult_GeneralSuccess;
+//}
+
+//APIResult GEARS_API Unloaded_HaptechDevice_name(_In_ int32_t hey, _Out_ int32_t* yo)
+//{
+//  return kAPIResult_GeneralSuccess;
+//}
+
+//APIResult GEARS_API Unloaded_HaptechDevice_errorProneMaybe(_Out_ void* device)
+//{
+//  return kAPIResult_GeneralSuccess;
+//}
+
+//APIResult GEARS_API Unloaded_HaptechDevice_get_device_state(_In_ const char* device_hex_address, _In_ const char* device_sensor, _Out_ int8_t* sensor_state)
+//{
+//  return kAPIResult_GeneralSuccess;
+//}
+
+APIResult GEARS_API Unloaded_HaptechDevice_test(_In_ const char* test_string, _In_ int32_t test_int)
 {
   return kAPIResult_GeneralSuccess;
 }
+
+//APIResult GEARS_API Unloaded_HaptechDevice_parse_device_updates()
+//{
+//  return kAPIResult_GeneralSuccess;
+//}
+
+APIResult GEARS_API Unloaded_HaptechDevice_ParseDeviceUpdates()
+{
+  return kAPIResult_GeneralSuccess;
+}
+
+APIResult GEARS_API Unloaded_HaptechDevice_GetDeviceState(_In_ const char* device_hex_address, _In_ const char* device_sensor, _Out_ int8_t* sensor_state)
+{
+  return kAPIResult_GeneralSuccess;
+}
+
+void GEARS_API Unloaded_ApplicationListener_OnBeforeUpdate(_In_ float32_t application_delta_time, _In_ float32_t simulation_delta_time)
+{
+}
+
+void GEARS_API Unloaded_ApplicationListener_OnApplicationReady()
+{
+}
+
+void GEARS_API Unloaded_ApplicationListener_OnAfterUpdate(_In_ float32_t application_delta_time, _In_ float32_t simulation_delta_time)
+{
+}
+
+//APIResult GEARS_API Unloaded_HaptechDevice_GetM4DeviceUsingStringAddress_v2(_In_ const char* device_address, _Out_ void* device)
+//{
+//  return kAPIResult_GeneralSuccess;
+//}
 
 //void GEARS_API Unloaded_WeaponSystemAspectListener_OnLaserFired(_In_ ObjectHandle_v3 laser_firer, _In_ ObjectHandle_v3 turret, _In_ float32_t distance, _In_ float32_t elevation, _In_ float32_t turn, _In_ GeoPosition_v5 laser_origin, _In_ Vector3f32_v3 laser_direction)
 //{

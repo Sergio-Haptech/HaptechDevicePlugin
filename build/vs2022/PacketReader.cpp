@@ -13,10 +13,10 @@ using namespace std;
 
 void StatePacket(ListOfDevices& list, string StringAddress, char CharAddress[8], char(&buffer)[30]) {
 
-    extern bool SafetyEnabled;
-    extern string CurrentDevice;
-    extern int AmmoCount;
-    extern int FireMode;
+    //extern bool SafetyEnabled;
+    //extern string CurrentDevice;
+    //extern int AmmoCount;
+    //extern int FireMode;
 
     shared_ptr<BaseDevice> LatestDevice;
 
@@ -42,23 +42,25 @@ void StatePacket(ListOfDevices& list, string StringAddress, char CharAddress[8],
     }
 
     if (list.CheckIfAlreadyInTheList(StringAddress)) {
-        CurrentDevice = StringAddress;
-        AmmoCount = list.DeviceDictionary.at(StringAddress)->GetAmmoCount();
-        FireMode = list.DeviceDictionary.at(StringAddress)->GetFireMode();
-        SafetyEnabled = list.DeviceDictionary.at(StringAddress)->GetSafetyInfo();
+        //CurrentDevice = StringAddress;
+        //AmmoCount = list.DeviceDictionary.at(StringAddress)->GetAmmoCount();
+        //FireMode = list.DeviceDictionary.at(StringAddress)->GetFireMode();
+        //SafetyEnabled = list.DeviceDictionary.at(StringAddress)->GetSafetyInfo();
     }
 }
 
 void ShotPacket(ListOfDevices& list, string StringAddress) {
 
     if (list.CheckIfAlreadyInTheList(StringAddress)) {
-        extern bool TimeToFire;
+        //extern bool TimeToFire;
 
         string ShotMessage = "Device " + StringAddress + " has fired!";
         cout << ShotMessage << endl;
         list.DeviceDictionary.at(StringAddress)->setLastPacketUpdateTime();
 
-        TimeToFire = true;
+        list.DeviceDictionary.at(StringAddress)->ReadyToFire = true;
+
+        //TimeToFire = true;
     }
     else {
         cout << "Unexpected shot from " << StringAddress << " received" << endl;

@@ -11,15 +11,6 @@
 #include "M4DeviceReaderReloadingModule.h"
 #include "M4DeviceReaderUnloadedPlaceholders.h"
 #include <GUIAPI.h>
-#include <MissionAPI.h>
-#include <WeaponSystemAspectAPI.h>
-#include <LogAPI.h>
-#include <EnvironmentAPI.h>
-#include <ObjectListenerAPI.h>
-#include <WorldDrawAPI.h>
-#include <WorldAPI.h>
-#include <SoundAspectAPI.h>
-#include <CommonTypesAPI.h>
 
 HMODULE g_component_dll = nullptr;
 APIResult g_load_result = kAPIResult_GeneralSuccess;
@@ -30,9 +21,7 @@ struct ImplementedAPIs
   ComponentAPI_v6 _component_v6;
   ApplicationListenerAPI_v2 _application_listener_v2;
   ComponentReloadingListenerAPI_v1 _component_reloading_listener_v1;
-  HaptechDeviceAPI_v1 _haptech_device_v1;
-  MissionListenerAPI_v4 _mission_listener_v4;
-  WeaponSystemAspectListenerAPI_v5 _weapon_system_aspect_listener_v5;
+  HaptechDeviceAPI_v2 _haptech_device_v2;
 };
 
 ImplementedAPIs g_current_apis;
@@ -59,31 +48,15 @@ GEARS_EXPORT void GEARS_API RegisterAPI_v6(APIManager_RegisterAPI_Func_v6 regist
   g_unloaded_apis._application_listener_v2.OnAfterUpdate = Unloaded_ApplicationListener_OnAfterUpdate;
   g_unloaded_apis._component_reloading_listener_v1.BeforeUnload = Unloaded_ComponentReloadingListener_BeforeUnload;
   g_unloaded_apis._component_reloading_listener_v1.AfterReload = Unloaded_ComponentReloadingListener_AfterReload;
-  g_unloaded_apis._haptech_device_v1.GetM4DeviceUsingStringAddress = Unloaded_HaptechDevice_GetM4DeviceUsingStringAddress;
-  g_unloaded_apis._mission_listener_v4.OnMissionStart = Unloaded_MissionListener_OnMissionStart;
-  g_unloaded_apis._mission_listener_v4.OnMissionEnd = Unloaded_MissionListener_OnMissionEnd;
-  g_unloaded_apis._mission_listener_v4.OnMissionLoad = Unloaded_MissionListener_OnMissionLoad;
-  g_unloaded_apis._mission_listener_v4.OnMissionUnload = Unloaded_MissionListener_OnMissionUnload;
-  g_unloaded_apis._mission_listener_v4.OnPlayerSwitchedUnits = Unloaded_MissionListener_OnPlayerSwitchedUnits;
-  g_unloaded_apis._mission_listener_v4.OnBriefingShowRequest = Unloaded_MissionListener_OnBriefingShowRequest;
-  g_unloaded_apis._mission_listener_v4.OnBriefingHideRequest = Unloaded_MissionListener_OnBriefingHideRequest;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnFire = Unloaded_WeaponSystemAspectListener_OnFire;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnAmmoHit = Unloaded_WeaponSystemAspectListener_OnAmmoHit;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnWeaponChanged = Unloaded_WeaponSystemAspectListener_OnWeaponChanged;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnMuzzleChanged = Unloaded_WeaponSystemAspectListener_OnMuzzleChanged;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnMagazineChanged = Unloaded_WeaponSystemAspectListener_OnMagazineChanged;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnWeaponAddedOrRemoved = Unloaded_WeaponSystemAspectListener_OnWeaponAddedOrRemoved;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnMagazineAddedOrRemoved = Unloaded_WeaponSystemAspectListener_OnMagazineAddedOrRemoved;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnIncomingLaser = Unloaded_WeaponSystemAspectListener_OnIncomingLaser;
-  g_unloaded_apis._weapon_system_aspect_listener_v5.OnIncomingProjectile = Unloaded_WeaponSystemAspectListener_OnIncomingProjectile;
+  g_unloaded_apis._haptech_device_v2.GetDeviceState = Unloaded_HaptechDevice_GetDeviceState;
+  g_unloaded_apis._haptech_device_v2.test = Unloaded_HaptechDevice_test;
+  g_unloaded_apis._haptech_device_v2.ParseDeviceUpdates = Unloaded_HaptechDevice_ParseDeviceUpdates;
 
   // Point current functions to unloaded placeholders
   g_current_apis._component_v6 = g_unloaded_apis._component_v6;
   g_current_apis._application_listener_v2 = g_unloaded_apis._application_listener_v2;
   g_current_apis._component_reloading_listener_v1 = g_unloaded_apis._component_reloading_listener_v1;
-  g_current_apis._haptech_device_v1 = g_unloaded_apis._haptech_device_v1;
-  g_current_apis._mission_listener_v4 = g_unloaded_apis._mission_listener_v4;
-  g_current_apis._weapon_system_aspect_listener_v5 = g_unloaded_apis._weapon_system_aspect_listener_v5;
+  g_current_apis._haptech_device_v2 = g_unloaded_apis._haptech_device_v2;
 
   // Register ComponentAPI_v6
   {
@@ -136,60 +109,20 @@ GEARS_EXPORT void GEARS_API RegisterAPI_v6(APIManager_RegisterAPI_Func_v6 regist
     register_api(ComponentReloadingListenerAPI_Handle, &api_info);
   }
 
-  // Register HaptechDeviceAPI_v1
+  // Register HaptechDeviceAPI_v2
   {
-    static HaptechDeviceAPI_v1 api;
+    static HaptechDeviceAPI_v2 api;
     APIInfo_v6 api_info;
 
-    api.GetM4DeviceUsingStringAddress = Wrapper_HaptechDevice_GetM4DeviceUsingStringAddress;
+    api.GetDeviceState = Wrapper_HaptechDevice_GetDeviceState;
+    api.test = Wrapper_HaptechDevice_test;
+    api.ParseDeviceUpdates = Wrapper_HaptechDevice_ParseDeviceUpdates;
 
     api_info._api = &api;
-    api_info._version = 1;
+    api_info._version = 2;
     api_info._privilege = 0;
 
     register_api(HaptechDeviceAPI_Handle, &api_info);
-  }
-
-  // Register MissionListenerAPI_v4
-  {
-    static MissionListenerAPI_v4 api;
-    APIInfo_v6 api_info;
-
-    api.OnMissionStart = Wrapper_MissionListener_OnMissionStart;
-    api.OnMissionEnd = Wrapper_MissionListener_OnMissionEnd;
-    api.OnMissionLoad = Wrapper_MissionListener_OnMissionLoad;
-    api.OnMissionUnload = Wrapper_MissionListener_OnMissionUnload;
-    api.OnPlayerSwitchedUnits = Wrapper_MissionListener_OnPlayerSwitchedUnits;
-    api.OnBriefingShowRequest = Wrapper_MissionListener_OnBriefingShowRequest;
-    api.OnBriefingHideRequest = Wrapper_MissionListener_OnBriefingHideRequest;
-
-    api_info._api = &api;
-    api_info._version = 4;
-    api_info._privilege = 0;
-
-    register_api(MissionListenerAPI_Handle, &api_info);
-  }
-
-  // Register WeaponSystemAspectListenerAPI_v5
-  {
-    static WeaponSystemAspectListenerAPI_v5 api;
-    APIInfo_v6 api_info;
-
-    api.OnFire = Wrapper_WeaponSystemAspectListener_OnFire;
-    api.OnAmmoHit = Wrapper_WeaponSystemAspectListener_OnAmmoHit;
-    api.OnWeaponChanged = Wrapper_WeaponSystemAspectListener_OnWeaponChanged;
-    api.OnMuzzleChanged = Wrapper_WeaponSystemAspectListener_OnMuzzleChanged;
-    api.OnMagazineChanged = Wrapper_WeaponSystemAspectListener_OnMagazineChanged;
-    api.OnWeaponAddedOrRemoved = Wrapper_WeaponSystemAspectListener_OnWeaponAddedOrRemoved;
-    api.OnMagazineAddedOrRemoved = Wrapper_WeaponSystemAspectListener_OnMagazineAddedOrRemoved;
-    api.OnIncomingLaser = Wrapper_WeaponSystemAspectListener_OnIncomingLaser;
-    api.OnIncomingProjectile = Wrapper_WeaponSystemAspectListener_OnIncomingProjectile;
-
-    api_info._api = &api;
-    api_info._version = 5;
-    api_info._privilege = 0;
-
-    register_api(WeaponSystemAspectListenerAPI_Handle, &api_info);
   }
 }
 
@@ -207,17 +140,9 @@ void RegisterComponentAPI(const char* api_name, const APIInfo_v6* api_info)
   {
     g_implementation_apis._component_reloading_listener_v1 = *reinterpret_cast<ComponentReloadingListenerAPI_v1*>(api_info->_api);
   }
-  else if(strcmp(api_name, HaptechDeviceAPI_Handle) == 0 && api_info->_version == 1)
+  else if(strcmp(api_name, HaptechDeviceAPI_Handle) == 0 && api_info->_version == 2)
   {
-    g_implementation_apis._haptech_device_v1 = *reinterpret_cast<HaptechDeviceAPI_v1*>(api_info->_api);
-  }
-  else if(strcmp(api_name, MissionListenerAPI_Handle) == 0 && api_info->_version == 4)
-  {
-    g_implementation_apis._mission_listener_v4 = *reinterpret_cast<MissionListenerAPI_v4*>(api_info->_api);
-  }
-  else if(strcmp(api_name, WeaponSystemAspectListenerAPI_Handle) == 0 && api_info->_version == 5)
-  {
-    g_implementation_apis._weapon_system_aspect_listener_v5 = *reinterpret_cast<WeaponSystemAspectListenerAPI_v5*>(api_info->_api);
+    g_implementation_apis._haptech_device_v2 = *reinterpret_cast<HaptechDeviceAPI_v2*>(api_info->_api);
   }
   else
   {
@@ -291,9 +216,7 @@ APIResult GEARS_API Wrapper_Component_Initialize(_In_ const char* component_fold
   g_current_apis._component_v6 = g_implementation_apis._component_v6;
   g_current_apis._application_listener_v2 = g_implementation_apis._application_listener_v2;
   g_current_apis._component_reloading_listener_v1 = g_implementation_apis._component_reloading_listener_v1;
-  g_current_apis._haptech_device_v1 = g_implementation_apis._haptech_device_v1;
-  g_current_apis._mission_listener_v4 = g_implementation_apis._mission_listener_v4;
-  g_current_apis._weapon_system_aspect_listener_v5 = g_implementation_apis._weapon_system_aspect_listener_v5;
+  g_current_apis._haptech_device_v2 = g_implementation_apis._haptech_device_v2;
   return return_value;
 }
 
@@ -339,9 +262,7 @@ APIResult GEARS_API Wrapper_Component_Shutdown()
   g_current_apis._component_v6 = g_unloaded_apis._component_v6;
   g_current_apis._application_listener_v2 = g_unloaded_apis._application_listener_v2;
   g_current_apis._component_reloading_listener_v1 = g_unloaded_apis._component_reloading_listener_v1;
-  g_current_apis._haptech_device_v1 = g_unloaded_apis._haptech_device_v1;
-  g_current_apis._mission_listener_v4 = g_unloaded_apis._mission_listener_v4;
-  g_current_apis._weapon_system_aspect_listener_v5 = g_unloaded_apis._weapon_system_aspect_listener_v5;
+  g_current_apis._haptech_device_v2 = g_unloaded_apis._haptech_device_v2;
 
   // Wait for any current API calls to finish
   while(InterlockedCompareExchange(&g_active_function_count, 0, 0) != 0)
@@ -510,276 +431,56 @@ APIResult GEARS_API Wrapper_ComponentReloadingListener_AfterReload(_In_ const ch
   return return_value;
 }
 
-APIResult GEARS_API Wrapper_HaptechDevice_GetM4DeviceUsingStringAddress(_Out_ void* device)
+APIResult GEARS_API Wrapper_HaptechDevice_GetDeviceState(_In_ const char* device_hex_address, _In_ const char* device_sensor, _Out_ int8_t* sensor_state)
 {
   APIResult return_value;
-  if(g_current_apis._haptech_device_v1.GetM4DeviceUsingStringAddress == g_implementation_apis._haptech_device_v1.GetM4DeviceUsingStringAddress)
+  if(g_current_apis._haptech_device_v2.GetDeviceState == g_implementation_apis._haptech_device_v2.GetDeviceState)
   {
     // Forward to implementation
     InterlockedIncrement(&g_active_function_count);
-    return_value = g_current_apis._haptech_device_v1.GetM4DeviceUsingStringAddress(device);
+    return_value = g_current_apis._haptech_device_v2.GetDeviceState(device_hex_address, device_sensor, sensor_state);
     InterlockedDecrement(&g_active_function_count);
   }
   else
   {
     // Forward to unloaded placeholder
-    return_value = g_unloaded_apis._haptech_device_v1.GetM4DeviceUsingStringAddress(device);
+    return_value = g_unloaded_apis._haptech_device_v2.GetDeviceState(device_hex_address, device_sensor, sensor_state);
   }
   return return_value;
 }
 
-void GEARS_API Wrapper_MissionListener_OnMissionStart(_In_ bool32_t restart)
+APIResult GEARS_API Wrapper_HaptechDevice_test(_In_ const char* test_string, _In_ int32_t test_int)
 {
-  if(g_current_apis._mission_listener_v4.OnMissionStart == g_implementation_apis._mission_listener_v4.OnMissionStart)
+  APIResult return_value;
+  if(g_current_apis._haptech_device_v2.test == g_implementation_apis._haptech_device_v2.test)
   {
     // Forward to implementation
     InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnMissionStart(restart);
+    return_value = g_current_apis._haptech_device_v2.test(test_string, test_int);
     InterlockedDecrement(&g_active_function_count);
   }
   else
   {
     // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnMissionStart(restart);
+    return_value = g_unloaded_apis._haptech_device_v2.test(test_string, test_int);
   }
+  return return_value;
 }
 
-void GEARS_API Wrapper_MissionListener_OnMissionEnd(_In_ bool32_t restart)
+APIResult GEARS_API Wrapper_HaptechDevice_ParseDeviceUpdates()
 {
-  if(g_current_apis._mission_listener_v4.OnMissionEnd == g_implementation_apis._mission_listener_v4.OnMissionEnd)
+  APIResult return_value;
+  if(g_current_apis._haptech_device_v2.ParseDeviceUpdates == g_implementation_apis._haptech_device_v2.ParseDeviceUpdates)
   {
     // Forward to implementation
     InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnMissionEnd(restart);
+    return_value = g_current_apis._haptech_device_v2.ParseDeviceUpdates();
     InterlockedDecrement(&g_active_function_count);
   }
   else
   {
     // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnMissionEnd(restart);
+    return_value = g_unloaded_apis._haptech_device_v2.ParseDeviceUpdates();
   }
-}
-
-void GEARS_API Wrapper_MissionListener_OnMissionLoad(_In_ const char* mission_name)
-{
-  if(g_current_apis._mission_listener_v4.OnMissionLoad == g_implementation_apis._mission_listener_v4.OnMissionLoad)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnMissionLoad(mission_name);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnMissionLoad(mission_name);
-  }
-}
-
-void GEARS_API Wrapper_MissionListener_OnMissionUnload(_In_ const char* mission_name)
-{
-  if(g_current_apis._mission_listener_v4.OnMissionUnload == g_implementation_apis._mission_listener_v4.OnMissionUnload)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnMissionUnload(mission_name);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnMissionUnload(mission_name);
-  }
-}
-
-void GEARS_API Wrapper_MissionListener_OnPlayerSwitchedUnits(_In_ ObjectHandle_v3 old_entity, _In_ ObjectHandle_v3 new_entity)
-{
-  if(g_current_apis._mission_listener_v4.OnPlayerSwitchedUnits == g_implementation_apis._mission_listener_v4.OnPlayerSwitchedUnits)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnPlayerSwitchedUnits(old_entity, new_entity);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnPlayerSwitchedUnits(old_entity, new_entity);
-  }
-}
-
-void GEARS_API Wrapper_MissionListener_OnBriefingShowRequest()
-{
-  if(g_current_apis._mission_listener_v4.OnBriefingShowRequest == g_implementation_apis._mission_listener_v4.OnBriefingShowRequest)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnBriefingShowRequest();
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnBriefingShowRequest();
-  }
-}
-
-void GEARS_API Wrapper_MissionListener_OnBriefingHideRequest()
-{
-  if(g_current_apis._mission_listener_v4.OnBriefingHideRequest == g_implementation_apis._mission_listener_v4.OnBriefingHideRequest)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._mission_listener_v4.OnBriefingHideRequest();
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._mission_listener_v4.OnBriefingHideRequest();
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnFire(_In_ ObjectHandle_v3 shooter_lifeform, _In_ ObjectHandle_v3 shooter_platform, _In_ ObjectHandle_v3 shooter_turret, _In_ ObjectHandle_v3 shot)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnFire == g_implementation_apis._weapon_system_aspect_listener_v5.OnFire)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnFire(shooter_lifeform, shooter_platform, shooter_turret, shot);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnFire(shooter_lifeform, shooter_platform, shooter_turret, shot);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnAmmoHit(_In_ const HitEvent_v3* hit_info)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnAmmoHit == g_implementation_apis._weapon_system_aspect_listener_v5.OnAmmoHit)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnAmmoHit(hit_info);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnAmmoHit(hit_info);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnWeaponChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t previous_weapon_index, _In_ int32_t new_weapon_index)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnWeaponChanged == g_implementation_apis._weapon_system_aspect_listener_v5.OnWeaponChanged)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnWeaponChanged(weapon_system_owner, previous_weapon_index, new_weapon_index);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnWeaponChanged(weapon_system_owner, previous_weapon_index, new_weapon_index);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnMuzzleChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t weapon_index, _In_ int32_t previous_muzzle_index, _In_ int32_t new_muzzle_index)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnMuzzleChanged == g_implementation_apis._weapon_system_aspect_listener_v5.OnMuzzleChanged)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnMuzzleChanged(weapon_system_owner, weapon_index, previous_muzzle_index, new_muzzle_index);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnMuzzleChanged(weapon_system_owner, weapon_index, previous_muzzle_index, new_muzzle_index);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnMagazineChanged(_In_ ObjectHandle_v3 weapon_system_owner, _In_ int32_t weapon_index, _In_ int32_t previous_magazine_index, _In_ int32_t new_magazine_index)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnMagazineChanged == g_implementation_apis._weapon_system_aspect_listener_v5.OnMagazineChanged)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnMagazineChanged(weapon_system_owner, weapon_index, previous_magazine_index, new_magazine_index);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnMagazineChanged(weapon_system_owner, weapon_index, previous_magazine_index, new_magazine_index);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnWeaponAddedOrRemoved(_In_ ObjectHandle_v3 weapon_system_owner, _In_ const char* weapon_name, _In_ int32_t count)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnWeaponAddedOrRemoved == g_implementation_apis._weapon_system_aspect_listener_v5.OnWeaponAddedOrRemoved)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnWeaponAddedOrRemoved(weapon_system_owner, weapon_name, count);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnWeaponAddedOrRemoved(weapon_system_owner, weapon_name, count);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnMagazineAddedOrRemoved(_In_ ObjectHandle_v3 weapon_system_owner, _In_ const char* magazine_name, _In_ int32_t count)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnMagazineAddedOrRemoved == g_implementation_apis._weapon_system_aspect_listener_v5.OnMagazineAddedOrRemoved)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnMagazineAddedOrRemoved(weapon_system_owner, magazine_name, count);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnMagazineAddedOrRemoved(weapon_system_owner, magazine_name, count);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnIncomingLaser(_In_ ObjectHandle_v3 lased_object, _In_ ObjectHandle_v3 laser_source, _In_ LaserType_v5 laser_type, _In_ int64_t lase_event_id, _In_ bool32_t end_of_lase_event, _In_ RotationalAngles_v3 laser_direction, _In_ GeoPosition_v5 laser_position, _In_ float32_t laser_cone_angle)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnIncomingLaser == g_implementation_apis._weapon_system_aspect_listener_v5.OnIncomingLaser)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnIncomingLaser(lased_object, laser_source, laser_type, lase_event_id, end_of_lase_event, laser_direction, laser_position, laser_cone_angle);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnIncomingLaser(lased_object, laser_source, laser_type, lase_event_id, end_of_lase_event, laser_direction, laser_position, laser_cone_angle);
-  }
-}
-
-void GEARS_API Wrapper_WeaponSystemAspectListener_OnIncomingProjectile(_In_ ObjectHandle_v3 object, _In_ ObjectHandle_v3 projectile, _In_ float32_t distance, _In_ GeoPosition_v5 projectile_position, _In_ Vector3f32_v3 projectile_velocity, _In_ ObjectHandle_v3 shooter, _In_ bool32_t can_damage, _In_ GeoPosition_v5 projectile_origin_position)
-{
-  if(g_current_apis._weapon_system_aspect_listener_v5.OnIncomingProjectile == g_implementation_apis._weapon_system_aspect_listener_v5.OnIncomingProjectile)
-  {
-    // Forward to implementation
-    InterlockedIncrement(&g_active_function_count);
-    g_current_apis._weapon_system_aspect_listener_v5.OnIncomingProjectile(object, projectile, distance, projectile_position, projectile_velocity, shooter, can_damage, projectile_origin_position);
-    InterlockedDecrement(&g_active_function_count);
-  }
-  else
-  {
-    // Forward to unloaded placeholder
-    g_unloaded_apis._weapon_system_aspect_listener_v5.OnIncomingProjectile(object, projectile, distance, projectile_position, projectile_velocity, shooter, can_damage, projectile_origin_position);
-  }
+  return return_value;
 }

@@ -1,42 +1,3 @@
-WorkInProgress:
-- '"This Component Config has been saved as a work in progress and should not be merged into master in its current state."'
-- '"Run Generate to clear this message and produce the final output files."'
-OriginalImplementedAPIs:
-- Name: ComponentAPI
-  Version: 6
-- Name: ApplicationListenerAPI
-  Version: 2
-- Name: ComponentReloadingListenerAPI
-  Version: 1
-- Name: HaptechDeviceAPI
-  Version: 1
-- Name: MissionListenerAPI
-  Version: 4
-- Name: WeaponSystemAspectListenerAPI
-  Version: 5
-OriginalDependencies:
-- Name: APIHelper
-  Version: 1
-- Name: GUIAPI
-  Version: 3
-- Name: MissionAPI
-  Version: 8
-- Name: WeaponSystemAspectAPI
-  Version: 11
-- Name: LogAPI
-  Version: 1
-- Name: EnvironmentAPI
-  Version: 9
-- Name: ObjectListenerAPI
-  Version: 1
-- Name: WorldDrawAPI
-  Version: 6
-- Name: WorldAPI
-  Version: 9
-- Name: SoundAspectAPI
-  Version: 2
-- Name: CommonTypesAPI
-  Version: 12
 Name: M4DeviceReader
 GitRemoteUrl: https://github.com/Sergio-Haptech/HaptechDevicePlugin.git
 Compilers:
@@ -54,36 +15,12 @@ ImplementedAPIs:
 - Name: ComponentReloadingListenerAPI
   Version: 1
 - Name: HaptechDeviceAPI
-  Version: 1
-- Name: MissionListenerAPI
-  Version: 4
-- Name: WeaponSystemAspectListenerAPI
-  Version: 5
-- Name: HaptechDeviceAPI
   Version: 2
 ExplicitDependencies:
 - Name: APIHelper
   Version: 1
 - Name: GUIAPI
   Version: 3
-- Name: MissionAPI
-  Version: 8
-- Name: WeaponSystemAspectAPI
-  Version: 11
-- Name: LogAPI
-  Version: 1
-- Name: EnvironmentAPI
-  Version: 9
-- Name: ObjectListenerAPI
-  Version: 1
-- Name: WorldDrawAPI
-  Version: 6
-- Name: WorldAPI
-  Version: 9
-- Name: SoundAspectAPI
-  Version: 2
-- Name: CommonTypesAPI
-  Version: 12
 Dependencies:
 - Project: Component
   Type: DLL
@@ -107,34 +44,12 @@ Dependencies:
     Version: 1
   - Name: GUIAPI
     Version: 3
-  - Name: MissionAPI
-    Version: 8
-  - Name: WeaponSystemAspectAPI
-    Version: 11
-  - Name: LogAPI
-    Version: 1
-  - Name: EnvironmentAPI
-    Version: 9
-  - Name: ObjectListenerAPI
-    Version: 1
-  - Name: WorldDrawAPI
-    Version: 6
-  - Name: WorldAPI
-    Version: 9
-  - Name: SoundAspectAPI
-    Version: 2
-  - Name: CommonTypesAPI
-    Version: 12
   - Name: ApplicationListenerAPI
     Version: 2
   - Name: ComponentAPI
     Version: 6
   - Name: ComponentReloadingListenerAPI
     Version: 1
-  - Name: MissionListenerAPI
-    Version: 4
-  - Name: WeaponSystemAspectListenerAPI
-    Version: 5
   UUID: 1b4eff29-f900-498b-9f03-2da43e54189c
 - Project: Library
   Type: LIB
@@ -158,10 +73,6 @@ Dependencies:
     Version: 6
   - Name: ComponentReloadingListenerAPI
     Version: 1
-  - Name: MissionListenerAPI
-    Version: 4
-  - Name: WeaponSystemAspectListenerAPI
-    Version: 5
   UUID: 2e9221ea-cdac-4ad9-a0ed-6e1c4b3676c7
 - Project: UnitTest
   Type: Console EXE
@@ -188,10 +99,6 @@ Dependencies:
     Version: 6
   - Name: ComponentReloadingListenerAPI
     Version: 1
-  - Name: MissionListenerAPI
-    Version: 4
-  - Name: WeaponSystemAspectListenerAPI
-    Version: 5
   UUID: df6ecffa-d44b-4a43-bc40-300546f4a0a8
 - Project: ReloadingModule
   Type: DLL
@@ -215,10 +122,6 @@ Dependencies:
     Version: 6
   - Name: ComponentReloadingListenerAPI
     Version: 1
-  - Name: MissionListenerAPI
-    Version: 4
-  - Name: WeaponSystemAspectListenerAPI
-    Version: 5
   UUID: 9f1f9895-b801-4b19-9bf9-119d3ae52fb7
 YmlVersion: 8
 UsingPropertyFiles: true

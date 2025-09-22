@@ -1,93 +1,104 @@
-WorkInProgress:
-- '"This API Config has been saved as a work in progress and should not be merged into master in its current state."'
-- '"Run Generate to clear this message and produce the final output files."'
-APIConfig:
-  Alias: HaptechDeviceAPI
-  Version:
-  - 1
-  - 2
-  Includes:
-  - Version: 1
-    Items:
-    - Name: CoreAPI
-      Version: 8
-  - Version: 2
-    Items:
-    - Name: CoreAPI
-      Version: 8
-  ItemOrdering:
-  - Version: 1
-    Functions:
-    - GetM4DeviceUsingStringAddress
-  - Version: 2
-    Functions:
-    - GetM4DeviceUsingStringAddress
+Alias: HaptechDeviceAPI
+Version:
+- 1
+- 2
+Includes:
+- Version: 1
+  Items:
+  - Name: CoreAPI
+    Version: 8
+- Version: 2
+  Items:
+  - Name: CoreAPI
+    Version: 8
+Removes:
+- Version: 2
+  Items:
+  - Name: GetM4DeviceUsingStringAddress
+    Brief: Functionality no longer needed
+ItemOrdering:
+- Version: 1
   Functions:
-  - Name: "GetM4DeviceUsingStringAddress"
-    Version: "1"
-    Return:
-      Type: "APIResult"
-      Description:
-      - return description
-      Literal: "APIResult"
-    Parameters:
-    - Name: "device"
-      Type: "void"
-      Pointer: true
-      Description:
-      - parameter description
-      Literal: "_Out_ void* device"
-      Annotation: "_Out_"
-  - Name: "GetM4DeviceUsingStringAddress"
-    Version: "2"
-    Return:
-      Type: "APIResult"
-      Description:
-      - return description
-      Literal: "APIResult"
-    Parameters:
-    - Name: "device"
-      Type: "void"
-      Pointer: true
-      Description:
-      - parameter description
-      Literal: "_Out_ void* device"
-      Annotation: "_Out_"
-    IsCopy: true
-    CopiedVersion: 1
-    WasCopy: true
-  ConvertedStructUnderscores: true
-  ConvertedRequiredVersions: true
-  GeneratingSHA: true
-  SHAExcludesComments: true
-OriginalAPIConfig:
-  Alias: HaptechDeviceAPI
-  Version:
-  - 1
-  Includes:
-  - Version: 1
-    Items:
-    - Name: CoreAPI
-      Version: 8
-  ItemOrdering:
-  - Version: 1
-    Functions:
-    - GetM4DeviceUsingStringAddress
+  - GetM4DeviceUsingStringAddress
+- Version: 2
   Functions:
-  - Name: "GetM4DeviceUsingStringAddress"
-    Version: "1"
-    Return:
-      Type: "APIResult"
-      Description:
-      - return description
-    Parameters:
-    - Name: "device"
-      Type: "void"
-      Pointer: true
-      Description:
-      - parameter description
-      Annotation: "_Out_"
-  ConvertedStructUnderscores: true
-  ConvertedRequiredVersions: true
-  GeneratingSHA: true
-  SHAExcludesComments: true
+  - GetDeviceState
+  - test
+  - ParseDeviceUpdates
+Functions:
+- Name: "GetM4DeviceUsingStringAddress"
+  Version: "1"
+  Return:
+    Type: "APIResult"
+    Description:
+    - return description
+  Parameters:
+  - Name: "device"
+    Type: "void"
+    Pointer: true
+    Description:
+    - parameter description
+    Annotation: "_Out_"
+- Name: "GetDeviceState"
+  Version: "2"
+  Description:
+  - returns the state of the inputted device sensor of the inputted device
+  Return:
+    Type: "APIResult"
+    Description:
+    - ''
+  Parameters:
+  - Name: "device_hex_address"
+    Type: "char"
+    Pointer: true
+    ConstData: true
+    Description:
+    - hex address of the inputted device
+    Annotation: "_In_"
+  - Name: "device_sensor"
+    Type: "char"
+    Pointer: true
+    ConstData: true
+    Description:
+    - sensor to get the state of
+    Annotation: "_In_"
+  - Name: "sensor_state"
+    Type: "int8_t"
+    Pointer: true
+    Description:
+    - state of the inputted sensor
+    Annotation: "_Out_"
+- Name: "test"
+  Version: "2"
+  Return:
+    Type: "APIResult"
+    Description:
+    - return description
+  Parameters:
+  - Name: "test_string"
+    Type: "char"
+    Pointer: true
+    ConstData: true
+    Description:
+    - parameter description
+    Annotation: "_In_"
+  - Name: "test_int"
+    Type: "int32_t"
+    Description:
+    - parameter description
+    Annotation: "_In_"
+- Name: "ParseDeviceUpdates"
+  Version: "2"
+  Description:
+  - Checks for state updates on any connected haptech devices
+  Return:
+    Type: "APIResult"
+    Description:
+    - return description
+ConvertedStructUnderscores: true
+ConvertedRequiredVersions: true
+GeneratingSHA: true
+SHAExcludesComments: true
+OldShas:
+- Version: 1
+  SHA: 7ddd9aa1015d2936a8ebf64cac07b389c081881f

@@ -162,10 +162,10 @@ void PacketListener(ListOfDevices& list, SOCKET& MyUDPSocket, sockaddr_in& Serve
         }
 
         //Check for Unresponsive Devices (devices that have not sent a packet for five or more seconds)
-        list.CheckForUnresponsiveDevices();
+        //list.CheckForUnresponsiveDevices();
 
         //Remove any Unrepsonsive devices from our list of registered devices
-        list.DeleteUnresponsiveDevices();
+        //list.DeleteUnresponsiveDevices();
         //}
 
     }
@@ -173,10 +173,10 @@ void PacketListener(ListOfDevices& list, SOCKET& MyUDPSocket, sockaddr_in& Serve
     
     else {
         //Check for Unresponsive Devices (devices that have not sent a packet for five or more seconds)
-        list.CheckForUnresponsiveDevices();
+        //list.CheckForUnresponsiveDevices();
 
         //Remove any Unrepsonsive devices from our list of registered devices
-        list.DeleteUnresponsiveDevices();
+        //list.DeleteUnresponsiveDevices();
         
     }
 }

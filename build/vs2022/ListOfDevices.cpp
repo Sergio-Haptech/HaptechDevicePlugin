@@ -6,16 +6,23 @@
 using namespace std;
 
 bool ListOfDevices::CheckIfAlreadyInTheList(string address) {
-	BorrowList.lock();
+	
+	string lowercase = address;
 
-	if (this->DeviceDictionary.find(address) != this->DeviceDictionary.end())
+	//transform(lowercase.begin(), lowercase.end(), lowercase.begin(), ::tolower);
+
+	for (size_t i = 0; i < lowercase.length(); ++i) {
+		lowercase[i] = tolower(static_cast<unsigned char>(lowercase[i]));
+	}
+
+	if (this->DeviceDictionary.find(lowercase) != this->DeviceDictionary.end())
 	{
-		BorrowList.unlock();
+		//BorrowList.unlock();
 		return true;
 	}
 	else
 	{
-		BorrowList.unlock();
+		//BorrowList.unlock();
 		return false;
 	}
 }

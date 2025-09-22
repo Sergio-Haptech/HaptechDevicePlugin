@@ -39,6 +39,70 @@ typedef struct HaptechDeviceAPI_v1
 
 static const char* HaptechDeviceAPI_SHA_v1 = "7ddd9aa1015d2936a8ebf64cac07b389c081881f";
 
+/**
+ API Version:       HaptechDevice API v2
+
+ New Functions:
+ GetDeviceState -
+ test -
+ ParseDeviceUpdates -
+
+ No functions were updated.
+
+ Removed Functions:
+ GetM4DeviceUsingStringAddress - Functionality no longer needed
+ */
+
+/**
+  @brief GetDeviceState v2
+         returns the state of the inputted device sensor of the inputted device
+
+  @param device_hex_address
+         hex address of the inputted device
+  @param device_sensor
+         sensor to get the state of
+  @param sensor_state
+         state of the inputted sensor
+
+  @return APIResult
+
+  */
+
+typedef APIResult (GEARS_API *HaptechDevice_GetDeviceState_Func_v2)(_In_ const char* device_hex_address, _In_ const char* device_sensor, _Out_ int8_t* sensor_state);
+
+/**
+  @brief test v2
+
+  @param test_string
+         parameter description
+  @param test_int
+         parameter description
+
+  @return APIResult
+          return description
+  */
+
+typedef APIResult (GEARS_API *HaptechDevice_test_Func_v2)(_In_ const char* test_string, _In_ int32_t test_int);
+
+/**
+  @brief ParseDeviceUpdates v2
+         Checks for state updates on any connected haptech devices
+
+  @return APIResult
+          return description
+  */
+
+typedef APIResult (GEARS_API *HaptechDevice_ParseDeviceUpdates_Func_v2)();
+
+typedef struct HaptechDeviceAPI_v2
+{
+  HaptechDevice_GetDeviceState_Func_v2   GetDeviceState;
+  HaptechDevice_test_Func_v2   test;
+  HaptechDevice_ParseDeviceUpdates_Func_v2   ParseDeviceUpdates;
+} HaptechDeviceAPI_v2;
+
+static const char* HaptechDeviceAPI_SHA_v2 = "0a1b28019fa06b4f4199677d7760b00a06f40592";
+
 static const char* HaptechDeviceAPI_Handle = "HaptechDeviceAPI";
 
 #endif

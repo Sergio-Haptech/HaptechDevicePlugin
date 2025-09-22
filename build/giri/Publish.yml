@@ -4,7 +4,7 @@ Repo: Gears
 Dependencies:
 - Group: Dependencies
   Name: HaptechDeviceAPI
-  Version: 1
+  Version: 2
   SubDependencies:
   - Group: Dependencies
     Name: CoreAPI

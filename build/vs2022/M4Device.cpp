@@ -6,10 +6,9 @@ using namespace chrono;
 M4Device::M4Device(char HexAddress[]) {
 
 	//M4 Specific attributes
-	WillJamUnclearable = false;
-	JammedUnclearable = false;
-	JammedClearable = false;
-	WillJamClearable = false;
+	RemedialMalfunction = false;
+	ImmediateMalfunction = false;
+	ChargingHandlePulled = false;
 	BatteryError = false;
 
 	LockedBack = false;
@@ -29,11 +28,11 @@ M4Device::M4Device(char HexAddress[]) {
 
 void M4Device::ParseState(char packet[]) {
 
-	WillJamUnclearable = ((0x01 << 7) & packet[10]) > 0;
-	JammedUnclearable = ((0x01 << 6) & packet[10]) > 0;
-	JammedClearable = ((0x01 << 5) & packet[10]) > 0;
-	WillJamClearable = ((0x01 << 4) & packet[10]) > 0;
+	RemedialMalfunction = ((0x01 << 6) & packet[10]) > 0;
+	ImmediateMalfunction = ((0x01 << 5) & packet[10]) > 0;
 	PowerButton = ((0x01 << 3) & packet[10]) > 0;
+	ChargingHandlePulled = ((0x01 << 2) & packet[10]) > 0;
+	DummyRound = ((0x01 << 1) & packet[10]) > 0;
 	BatteryError = (0x01 & packet[10]) > 0;
 
 	LockedBack = ((0x01 << 7) & packet[11]) > 0;
@@ -48,8 +47,6 @@ void M4Device::ParseState(char packet[]) {
 	BoltPosition = (int)static_cast<unsigned char>(packet[12]);
 
 	CurrentAmmo = (int)static_cast<unsigned char>(packet[13]);
-
-
 
 	PowerStageTempWarning = ((0x01 << 7) & packet[14]) > 0;
 	MotorTemperature = (packet[14] & 0x7f);

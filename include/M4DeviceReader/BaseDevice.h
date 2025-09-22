@@ -37,10 +37,13 @@ public:
 	bool UsingMainBattery{};
 	bool PowerButton{};
 	bool Trigger{};
+	bool DummyRound{};
 	bool LaserEnabled{};
 	bool QuietMode{};
 	bool Safety{};
 	bool MotorTempWarning{};
+
+	bool ReadyToFire{};
 
 	int LaserDuration{};
 	int MotorTemperature{};

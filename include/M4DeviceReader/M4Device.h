@@ -12,10 +12,9 @@ public:
 
 	int GetFireMode() override;
 
-	bool WillJamUnclearable;
-	bool JammedUnclearable;
-	bool JammedClearable;
-	bool WillJamClearable;
+	bool RemedialMalfunction;
+	bool ImmediateMalfunction;
+	bool ChargingHandlePulled;
 	bool BatteryError;
 
 	bool LockedBack;
